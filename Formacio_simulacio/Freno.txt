@@ -1,0 +1,16 @@
+PROGRAM _CYCLIC
+
+
+	IF (EDGEPOS (Man_XY.inprod.FD_Freno_Entrada) AND Man_XY.inprod.FD1_Producte AND Man_XY.inprod.FD2_Producte AND Man_XY.inprod.FD3_Producte AND Man_XY.inprod.FD4_Producte) THEN
+		Man_XY.outprod.EV_Taco_Entrada:=TRUE;
+		Timer_freno.PT:=T#300ms;
+		Timer_freno.IN:=TRUE;
+	END_IF
+	
+	IF (Timer_freno.Q) THEN
+		Timer_freno.IN:=FALSE;
+		Man_XY.outprod.EV_Taco_Entrada:=FALSE;
+	END_IF
+	Timer_freno();
+		
+END_PROGRAM

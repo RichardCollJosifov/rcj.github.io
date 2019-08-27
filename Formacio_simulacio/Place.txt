@@ -1,0 +1,65 @@
+PROGRAM _CYCLIC
+
+	CASE Estat_place OF
+		
+		0://Els braços es posen sobre els productes
+			
+			Man_XY.outbox.EV_pisto_Seperar_Pinca_Llarg:=FALSE;
+			Man_XY.outbox.EV_pisto_Seperar_Pinca_Curt:=FALSE;
+			Man_XY.outbox.EV_Pisto_Z_Pick:=FALSE;
+			Man_XY.outbox.EV_Pisto_Z_Place:=FALSE;
+			IF (NOT Man_XY.inprod.FD_Taula_Pick_1 AND NOT Man_XY.inprod.FD_Taula_Pick_2) THEN
+				Man_XY.outprod.EV_Compressor_Taula:=FALSE;
+			ELSIF (Man_XY.inprod.FD_Taula_Pick_1 AND Man_XY.inprod.FD_Taula_Pick_2) THEN
+				Man_XY.outprod.EV_Compressor_Taula:=TRUE;
+				sAx_Pinca.Parameter.Position:=700;
+				sAx_Pinca.Command.Move.Absolute:=TRUE;
+				Estat_place:=5;
+			END_IF
+			
+		5://Els agafa
+			
+			IF (sAx_Pinca.Status.InPosition) THEN
+				Man_XY.outbox.EV_Pisto_Z_Pick:=TRUE;
+				Booleo[5,11]:=TRUE;
+				Booleo[5,12]:=TRUE;
+				Estat_place:=10;
+			END_IF
+		
+		10://Els porta sobre la caixa
+			
+			Timer_place.PT:=T#400ms;
+			Timer_place.IN:=TRUE;
+			IF (Timer_place.Q) THEN
+				Timer_place.IN:=FALSE;
+				Man_XY.outbox.EV_Pisto_Z_Pick:=FALSE;
+				sAx_Pinca.Parameter.Position:=220;
+				sAx_Pinca.Command.Move.Absolute:=TRUE;
+				Man_XY.outbox.EV_pisto_Seperar_Pinca_Llarg:=TRUE;
+				Man_XY.outbox.EV_pisto_Seperar_Pinca_Curt:=TRUE;
+				Estat_place:=15;
+			END_IF
+			
+		15://Els deixa a la caixa
+			
+			IF (sAx_Pinca.Status.InPosition (*AND Man_XY.outbox.EV_Pisto_Centrador*)) THEN
+				Man_XY.outbox.EV_Pisto_Z_Pick:=TRUE;
+				Man_XY.outbox.EV_Pisto_Z_Place:=TRUE;
+				
+				Timer_place2.PT:=T#400ms;
+				Timer_place2.IN:=TRUE;
+				IF (Timer_place2.Q) THEN
+					Timer_place2.IN:=FALSE;
+					Booleo[5,11]:=FALSE;
+					Booleo[5,12]:=FALSE;
+					Estat_place:=0;
+				END_IF
+				
+				
+			END_IF
+
+	END_CASE
+	Timer_place();
+	Timer_place2();
+
+END_PROGRAM

@@ -1,0 +1,50 @@
+PROGRAM _CYCLIC
+
+
+	CASE Estat_boxes OF
+		
+		0://Entren 2 caixes
+			
+			Timer_boxes2.PT:=T#900ms;
+			Timer_boxes2.IN:=TRUE;
+			IF (Timer_boxes2.Q) THEN
+				Timer_boxes2.IN:=FALSE;
+				Man_XY.outbox.EV_Pisto_Empeny:=FALSE;
+				Man_XY.outbox.EV_Pisto_Centrador:=FALSE;
+				Man_XY.outbox.EV_Dedos_Seperador:=FALSE;
+			END_IF
+			
+			IF (NOT Man_XY.inbox.FD_ZCaixes_1) THEN
+				Man_XY.outbox.EV_Freno_ZC_2:=TRUE;
+			ELSIF (Man_XY.inbox.FD_ZCaixes_1) THEN
+				Man_XY.outbox.EV_Freno_ZC_2:=FALSE;
+			END_IF
+			
+			IF (NOT Man_XY.outbox.EV_Pisto_Empeny AND Man_XY.inbox.FD_ZCaixes_1 AND Man_XY.inbox.FD_ZCaixes_2) THEN
+				Man_XY.outbox.EV_Pisto_Centrador:=TRUE;
+				Estat_boxes:=5;
+			END_IF		
+		
+		5://Baixen les dents
+
+			IF (Man_XY.outbox.EV_pisto_Seperar_Pinca_Llarg) THEN
+				Man_XY.outbox.EV_Dedos_Seperador:=TRUE;
+				Estat_boxes:=10;
+			END_IF
+			
+		10://Empeny les caixes
+		
+			Timer_proteccio.PT:=T#600ms;
+			Timer_proteccio.IN:=TRUE;
+			IF (Timer_proteccio.Q) THEN
+				Timer_proteccio.IN:=FALSE;
+				Man_XY.outbox.EV_Pisto_Empeny:=TRUE;
+				Estat_boxes:=0;
+			END_IF
+			
+	
+	END_CASE
+	Timer_boxes2();
+	Timer_proteccio();
+
+END_PROGRAM

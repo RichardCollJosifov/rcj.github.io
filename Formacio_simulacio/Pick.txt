@@ -1,0 +1,53 @@
+PROGRAM _CYCLIC
+
+	CASE Estat_pick OF
+		
+		0://Esperar 4 productes
+			
+			IF (Man_XY.inprod.FD1_Producte AND Man_XY.inprod.FD2_Producte AND Man_XY.inprod.FD3_Producte AND Man_XY.inprod.FD4_Producte) THEN
+				Man_XY.outprod.EV_Descompressor:=FALSE;
+				Man_XY.outprod.EV_Pujar_Taula:=FALSE;
+				IF (NOT Man_XY.inprod.FD_Taula_Pick_1) THEN
+					sAx_Empenyedor.Parameter.Position:=450;
+					Estat_pick:=4;
+				ELSIF (Man_XY.inprod.FD_Taula_Pick_1 AND NOT Man_XY.inprod.FD_Taula_Pick_2) THEN
+					sAx_Empenyedor.Parameter.Position:=350;
+					Estat_pick:=4;
+				END_IF
+				
+			END_IF
+
+		4://Timer perquè el producte no xoqui contra la taula
+			
+			Timer_pick.PT:=T#200ms;
+			Timer_pick.IN:=TRUE;
+			IF (Timer_pick.Q) THEN
+				Timer_pick.IN:=FALSE;
+				sAx_Empenyedor.Command.Move.Absolute:=TRUE;
+				Estat_pick:=5;
+			END_IF
+		
+		5://Comprovar si està en posició
+			
+			IF (sAx_Empenyedor.Status.InPosition) THEN
+				Man_XY.outprod.Pujar_Empeny:=TRUE;
+				Man_XY.outprod.EV_Pujar_Taula:=TRUE;
+				Man_XY.outprod.EV_Descompressor:=TRUE;
+				sAx_Empenyedor.Parameter.Position:=70;
+				sAx_Empenyedor.Command.Move.Absolute:=TRUE;
+				Estat_pick:=10;
+			END_IF
+			
+			
+		10://Baixar empenyador
+		
+			IF (sAx_Empenyedor.Status.InPosition) THEN
+				Man_XY.outprod.Pujar_Empeny:=FALSE;
+				Estat_pick:=0;
+			END_IF
+		
+				
+	END_CASE
+
+	Timer_pick();
+END_PROGRAM
