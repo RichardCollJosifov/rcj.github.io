@@ -1,0 +1,37 @@
+PROGRAM _CYCLIC
+
+	(*El radi de la roda és 0.325 metres. El perímetre de la roda és 2*p*0.325 i dona aproximadament 2.04. Després ho dividim per 83000 que són els
+	pulsos de l'encoder en una volta de la roda i dona aproximadament 2.46*10^(-5). Això ho dividim per 0.02 s que és el temps d'un cicle i dona 
+	aproximadament 0.00123. Això es multiplica pels pulsos per cicle (dX) i es passa a km/h.  *)
+	
+	//Programa moviment automàtic
+	IF automatic THEN 
+
+		dX:=2000*COS(Inclinacio*2*3.14/360)+500;
+		x:=x+0.25;
+		Orientacio:= 2*SIN(x*2*3.14/360);
+	ELSE 
+		dX:=Encoder_Roda - Distancia_ant;
+		Distancia_ant := Encoder_Roda;
+	END_IF
+	
+	
+	
+	Distancia:=anterior_distancia+Velocitat*0.02/3.6;
+	anterior_distancia:=Distancia;
+	IF dX*0.00123014170170684*3.6-velocitat_anterior>0.02 THEN 
+		Velocitat:=velocitat_anterior+0.02;
+	ELSE 
+		IF dX*0.00123014170170684*3.6-velocitat_anterior<-0.02 THEN
+			Velocitat:=velocitat_anterior-0.02;
+		ELSE 
+			Velocitat:=dX*0.00123014170170684*3.6;
+		END_IF
+	END_IF
+
+	velocitat_anterior:=Velocitat;
+
+
+	//KM TOTALS RECORREGUTS
+	//Distancia := ABS(Distancia + (Velocitat * K_distancia_metres));
+END_PROGRAM
