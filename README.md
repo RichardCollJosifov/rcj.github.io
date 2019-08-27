@@ -4,6 +4,8 @@
 
 - Programa modificat de la [bicicleta](https://raw.githubusercontent.com/RichardCollJosifov/richardcolljosifov.github.io/master/Modificacio_bicicleta.txt)
 
+- Programa per comprovar els [motors](Motors.rar)
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
