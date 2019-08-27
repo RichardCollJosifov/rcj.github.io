@@ -1,6 +1,6 @@
 ## Documentació 
 
-- Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita balenaEtcher: [https://www.balena.io/etcher/](url) . Seguidament descarregar Raspbian [https://www.raspberrypi.org/downloads/raspbian/](url).
+- Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita  [balenaEtcher](https://www.balena.io/etcher/). Seguidament descarregar [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
 
 -
 
