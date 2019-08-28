@@ -3,10 +3,10 @@
 
   <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
 </head>
+<body>
+ <h1>Documentació agost 2019</h1>
 
-## Documentació agost 2019
-
-- Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita  [balenaEtcher](https://www.balena.io/etcher/). Seguidament descarregar [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
+<p>- Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita  <a href="https://www.balena.io/etcher/"> balenaEtcher</a>. Seguidament descarregar [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).</p>
 
 - Programa modificat de la [bicicleta](https://raw.githubusercontent.com/RichardCollJosifov/richardcolljosifov.github.io/master/Modificacio_bicicleta.txt)
 
@@ -21,3 +21,4 @@
   
 - [Programa per deixar els productes dins de les caixes amb el braç mecànic](https://raw.githubusercontent.com/RichardCollJosifov/richardcolljosifov.github.io/master/Formacio_simulacio/Place.txt)
 
+</body>
