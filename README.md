@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<head>
+
+  <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
+</head>
+  
+
 ## Documentació agost 2019
 
 - Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita  [balenaEtcher](https://www.balena.io/etcher/). Seguidament descarregar [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
