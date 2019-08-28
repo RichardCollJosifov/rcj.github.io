@@ -1,4 +1,5 @@
  <!DOCTYPE html>
+ <html>
 <head>
 
   <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
@@ -22,3 +23,4 @@
 - [Programa per deixar els productes dins de les caixes amb el braç mecànic](https://raw.githubusercontent.com/RichardCollJosifov/richardcolljosifov.github.io/master/Formacio_simulacio/Place.txt)
 
 </body>
+</html>
