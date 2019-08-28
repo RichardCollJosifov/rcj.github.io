@@ -1,8 +1,4 @@
- <!DOCTYPE html>
-<head>
 
-  <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
-</head>
 
 ## Documentació agost 2019
 
