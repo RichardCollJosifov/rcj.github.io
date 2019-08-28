@@ -1,6 +1,6 @@
  <!DOCTYPE html>
 <head>
-
+ <title>Tavil</title>
   <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
 </head>
 
