@@ -1,3 +1,7 @@
+## CV
+[Curriculum Vitae](CV_Coll_Josifov_ENGLISH_12-2020.pdf)
+
+
 ## Documentació agost 2019
 
 - Instal·lació de Raspbian en una Raspberry Pi 3. Es nececessita  [balenaEtcher](https://www.balena.io/etcher/). Seguidament descarregar [Raspbian](https://www.raspberrypi.org/downloads/raspbian/).
