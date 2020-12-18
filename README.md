@@ -1,5 +1,5 @@
 ## CV
-[Curriculum Vitae](CV_Coll_Josifov_ENGLISH_12-2020.pdf)
+You can find my latest CV here: [Curriculum Vitae](CV_Coll_Josifov_ENGLISH_12-2020.pdf)
 
 
 ## Documentació agost 2019
